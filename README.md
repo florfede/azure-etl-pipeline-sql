@@ -112,4 +112,4 @@ python scripts/load_to_sql.py
 
 **Florencia Federico**  
 Data & Machine Learning Engineer  
-[LinkedIn](https://linkedin.com/in/florencia-federico)
+[LinkedIn](https://www.linkedin.com/in/florenciafederico88/)
