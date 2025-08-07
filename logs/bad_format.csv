@@ -1,0 +1,4 @@
+artist_id,artist_name,month,royalties_usd,spotify_streams,instagram_followers
+A001,Artist One,2025-07,not_a_number,125000,10230
+A002,Artist Two,invalid_date,2389.75,198000,20500
+A003,Artist Three,2025-07,987.30,,
