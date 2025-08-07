@@ -12,10 +12,10 @@ This pipeline is ideal for automating the ingestion of external data (e.g. earni
 
 ## ⚙️ Architecture Overview
 
-1. **Azure Blob Storage** stores raw CSV files.  
-2. **Azure Data Factory** triggers the pipeline.  
-3. **Azure Batch / Python script** performs the transformation.  
-4. **Azure SQL Database** receives the cleaned data.
+1. **Azure Blob Storage** stores raw CSV files  
+2. **Azure Data Factory** triggers the pipeline  
+3. **Azure Batch / Python script** performs the transformation  
+4. **Azure SQL Database** receives the cleaned data
 
 > 🧠 The pipeline is fully modular and can be adapted to other data sources or destinations.
 
@@ -50,43 +50,38 @@ azure-etl-pipeline-sql/
 - Optional: malformed rows detected and logged
 
 ### 🔹 Load
-- Data is inserted/updated in SQL Server  
-- `pyodbc` or `SQLAlchemy` used for connection  
-- Includes retry logic and basic error handling
+- Data is inserted into SQL Server  
+- Uses `pyodbc` for connection  
+- Includes optional table creation and basic error handling
 
 ---
 
 ## 🧪 How to Run Locally
 
-1. **Clone the repo**:
+### 1. Clone the repo
 
 ```bash
 git clone https://github.com/tu-usuario/azure-etl-pipeline-sql.git
 cd azure-etl-pipeline-sql
 ```
 
-2. **Install requirements**:
+### 2. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. **Set environment variables**:
+### 3. Run ETL pipeline manually
 
 ```bash
-AZURE_STORAGE_CONNECTION_STRING=...
-SQL_SERVER=...
-SQL_DB=...
-SQL_USER=...
-SQL_PASSWORD=...
+# Step 1: Transform the data
+python scripts/transform.py data/sample_data_10k.csv
+
+# Step 2: Load to SQL Server
+python scripts/load_to_sql.py data/sample_data_10k.csv royalties_table "DRIVER={ODBC Driver 17 for SQL Server};SERVER=localhost;DATABASE=mydb;UID=sa;PWD=your_password"
 ```
 
-4. **Run ETL scripts**:
-
-```bash
-python scripts/transform.py
-python scripts/load_to_sql.py
-```
+> ✅ You can also export the connection string to an environment variable and adapt the script to read from it using `os.environ`.
 
 ---
 
@@ -102,9 +97,9 @@ python scripts/load_to_sql.py
 
 ## 📚 Optional Enhancements
 
-- Add validation schema (e.g. `pandera`, `pydantic`)  
-- Use Azure Key Vault for credentials  
-- Add CI/CD with GitHub Actions
+- Add schema validation with `pandera` or `pydantic`  
+- Use Azure Key Vault to store credentials securely  
+- CI/CD integration with GitHub Actions
 
 ---
 
